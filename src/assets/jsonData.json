@@ -1,0 +1,48 @@
+{
+  "date": "2024-04-01T00:00:00+01:00",
+  "changes_since": "2024-03-01T00:00:00+01:00",
+  "domain": "example.com",
+  
+  "address": {
+    "company": "Awesome Company Ltd.",
+    "contact": "Max Mustermann",
+    "address_line_1": "Hauptstraße 3",
+    "address_line_2": "12345 Musterstadt",
+    "address_line_3": "Germany"
+  },
+
+  "data": {
+    "total": {
+      "current": 3011712,
+      "increase_percent": 12,
+      "new": 197866
+    },
+    "email_password_hash_combinations": {
+      "current": 331364,
+      "new": 36327
+    },
+    "email": {
+      "current": 256167,
+      "new": 20091
+    },
+    "duplicates": {
+      "current": 2424181,
+      "new": 141448
+    },
+    "email_cleartext_password_combinations": {
+      "current": 235090,
+      "percentage": 71,
+      "new": 35996
+    },
+    "email_hashed_password_combinations": {
+      "current": 96274,
+      "percentage": 29,
+      "new": 331
+    },
+    "sources": {
+      "collections": 61,
+      "files": 26595,
+      "avg_identities_per_collection": 49372
+    }
+  }
+}
