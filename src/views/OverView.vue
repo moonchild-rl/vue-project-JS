@@ -79,6 +79,7 @@ export default {
     }
   }
 }
+
 /*
 var trace1 = {
   x: ['giraffes', 'orangutans', 'monkeys'],
@@ -98,7 +99,7 @@ var datagram = [trace1, trace2]
 var layout = { barmode: 'stack' }
 
 
-Plotly.newPlot('diagram', datagram, layout);
+Plotly.newPlot('diagram', datagram, layout)
 */
 </script>
 
