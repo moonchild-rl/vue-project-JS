@@ -49,9 +49,6 @@ h1 {
   text-align: center;
 }
 p {
-  text-align: center;
-}
-label {
-  font-weight: bold;
+  text-align: left;
 }
 </style>

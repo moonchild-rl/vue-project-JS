@@ -60,12 +60,9 @@ h1 {
   text-align: center;
 }
 p {
-  text-align: center;
+  text-align: left;
 }
 .vli {
   text-align: center;
-}
-label {
-  font-weight: bold;
 }
 </style>

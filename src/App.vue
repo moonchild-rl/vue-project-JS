@@ -6,28 +6,34 @@ const check1 = ref(false)
 const check2 = ref(false)
 const check3 = ref(false)
 const check4 = ref(false)
+const check5 = ref(false)
+const check6 = ref(false)
+const check7 = ref(false)
 
 async function resetChecks() {
   check1.value = false
   check2.value = false
   check3.value = false
   check4.value = false
+  check5.value = false
+  check6.value = false
+  check7.value = false
 }
 
 //Get the current month & year
 const months = [
-  'Januar',
-  'Februar',
-  'März',
+  'January',
+  'February',
+  'March',
   'April',
-  'Mai',
-  'Juni',
-  'Juli',
+  'May',
+  'June',
+  'July',
   'August',
   'September',
-  'Oktober',
+  'October',
   'November',
-  'Dezember'
+  'December'
 ]
 const date = new Date()
 const month = months[date.getMonth()]
@@ -49,16 +55,24 @@ const year = date.getFullYear()
         </a>
 
         <nav class="topnav">
-          <a href="https://identeco.de/de/contact/" class="split"><v-btn>Kontakt</v-btn></a>
-          <a href="https://identeco.de/de/products/" class="split"><v-btn>Ressourcen</v-btn></a>
+          <a href="https://identeco.de/en/contact/" class="split"><v-btn>Contact</v-btn></a>
+          <a href="https://identeco.de/en/products/" class="split"><v-btn>Ressources</v-btn></a>
         </nav>
       </header>
       <br />
-      <v-container class="inner-body">
-        <h1 class="caption-header">Account Leak Report {{ month }} {{ year }}</h1>
-        <h2 class="caption-header">Für Ihre Domain example.net</h2>
-        <img alt="Threat Banner" class="banner" src="@/assets/cyberlower.jpg" />
-        <img alt="Identeco logo" src="@/assets/logo-identeco-white.svg" width="200" height="28.5" />
+      <v-container class="text-body">
+        <div class="banner">
+          <img alt="Threat Banner" class="bannerimage" src="@/assets/cyberlower.jpg" />
+          <img
+            alt="Identeco logo"
+            class="bannerlogo"
+            src="@/assets/logo-identeco-white.svg"
+            width="200"
+            height="28.5"
+          />
+          <h1 class="caption-header">Account Leak Report {{ month }} {{ year }}</h1>
+          <h2 class="caption-header">FOR YOUR DOMAIN example.net</h2>
+        </div>
         <br />
         <v-container>
           <v-row align="center" justify="space-evenly">
@@ -267,7 +281,11 @@ const year = date.getFullYear()
             >Reset all Checks</v-btn
           ></v-container
         >
-        <v-container><p>hier könnte ihr footer stehen</p></v-container>
+        <v-container
+          ><p>
+            hier könnte ihr footer stehen (wenn der vuetify footer wieder funktionieren würde)
+          </p></v-container
+        >
       </v-container>
     </body>
   </body>
@@ -281,6 +299,77 @@ body .innerbody {
   max-width: 87.5rem;
   margin: 0 auto;
   background: #fff;
+}
+
+/* Fira Sans Regular */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('fonts/FiraSans/FiraSans-Regular.ttf');
+  src: url('fonts/FiraSans/FiraSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Fira Sans Italic */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('fonts/FiraSans/FiraSans-Italic.ttf');
+  src: url('fonts/FiraSans/FiraSans-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Fira Sans Bold */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('fonts/FiraSans/FiraSans-Bold.ttf');
+  src: url('fonts/FiraSans/FiraSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+/* Fira Sans BoldItalic */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('fonts/FiraSans/FiraSans-BoldItalic.ttf');
+  src: url('fonts/FiraSans/FiraSans-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Fira Sans Thin */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('fonts/FiraSans/FiraSans-Thin.ttf');
+  src: url('fonts/FiraSans/FiraSans-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+/* Fira Sans ThinItalic */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('fonts/FiraSans/FiraSans-ThinItalic.ttf');
+  src: url('fonts/FiraSans/FiraSans-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* Fira Sans Light */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('fonts/FiraSans/FiraSans-Light.ttf');
+  src: url('fonts/FiraSans/FiraSans-Light.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+/* Fira Sans LightItalic */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('fonts/FiraSans/FiraSans-LightItalic.ttf');
+  src: url('fonts/FiraSans/FiraSans-LightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
 }
 
 header {
@@ -304,13 +393,12 @@ nav a {
   border-left: 1px solid var(--color-border);
 }
 
-.banner {
+.bannerimage {
   display: block;
   width: 100%;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: -5rem;
 }
 
 .caption-header {
@@ -355,10 +443,12 @@ h3 {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
-  .inner-body {
+  .text-body {
     max-width: 64.5rem;
     font-size: 1.1em;
     line-height: 1.5;
+    color: #5b6770;
+    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
   }
 }
 @media only screen and (max-width: 600px) {

@@ -136,9 +136,6 @@ h2 {
 }
 
 p {
-  text-align: center;
-}
-label {
-  font-weight: bold;
+  text-align: left;
 }
 </style>
