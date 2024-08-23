@@ -27,8 +27,8 @@
     <v-container>
       <p>Duplicates: {{ data.data.duplicates.current }}</p></v-container
     >
-    <!--<div id="diagram"></div>-->
   </v-container>
+  <PlotlyChart :data="chartData" :layout="chartLayout" />
   <v-container>
     <RouterLink to="/clear" @click="scrollToTop"
       ><v-btn block color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
@@ -39,15 +39,26 @@
 </template>
 
 <script>
-//import Plotly from 'plotly.js-dist'
-//const Plotly = require('plotly.js-basic-dist')
-//var Plotly = require('plotly.js/dist/plotly.js')
-
+import PlotlyChart from '@/components/PlotlyChart.vue'
 import jsonData from '../assets/jsonData.json'
 export default {
+  name: 'OverView',
+  components: {
+    PlotlyChart
+  },
   data() {
     return {
-      data: jsonData
+      data: jsonData,
+      chartData: [
+        {
+          x: [1, 2, 3, 4, 5],
+          y: [10, 15, 13, 17, 22],
+          type: 'scatter'
+        }
+      ],
+      chartLayout: {
+        title: 'Sample Chart'
+      }
     }
   },
   methods: {
@@ -56,27 +67,6 @@ export default {
     }
   }
 }
-/*
-var trace1 = {
-  x: ['giraffes', 'orangutans', 'monkeys'],
-  y: [20, 14, 23],
-  name: 'SF Zoo',
-  type: 'bar'
-}
-var trace2 = {
-  x: ['giraffes', 'orangutans', 'monkeys'],
-  y: [12, 18, 29],
-  name: 'LA Zoo',
-  type: 'bar'
-}
-
-var datagram = [trace1, trace2]
-
-var layout = { barmode: 'stack' }
-
-
-Plotly.newPlot('diagram', datagram, layout)
-*/
 </script>
 
 <style scoped>
@@ -93,10 +83,7 @@ img {
   height: 50px;
   margin: 1rem 1rem;
 }
-h1 {
-  text-align: center;
-}
-h2 {
+h1 h2 {
   text-align: center;
 }
 p {
