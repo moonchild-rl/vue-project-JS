@@ -34,11 +34,44 @@ const months = [
 const date = new Date()
 const month = months[date.getMonth()]
 const year = date.getFullYear()
+
+//Links for Footer
+const links = [
+        ['Home', 'https://identeco.de/en/'],
+        ['Products', 'https://identeco.de/en/products/'],
+        ['About Us', 'https://identeco.de/en/about/']
+        /*
+        ['Blog', 'https://identeco.de/en/blog/']
+        ['Press', 'https://identeco.de/en/press/']
+        ['Contact', 'https://identeco.de/en/contact/']
+        ['Privacy Policy', 'https://identeco.de/en/privacy_policy/']
+        ['Imprint', 'https://identeco.de/en/imprint/']
+        */
+      ]
+</script>
+<script> 
+  export default {
+    data: () => ({
+      /*
+      links: [
+        ['Home', 'https://identeco.de/en/'],
+        ['Products', 'https://identeco.de/en/products/'],
+        ['About Us', 'https://identeco.de/en/about/']
+        ['Blog', 'https://identeco.de/en/blog/']
+        ['Blog', 'https://identeco.de/en/blog/']
+        ['Press', 'https://identeco.de/en/press/']
+        ['Contact', 'https://identeco.de/en/contact/']
+        ['Privacy Policy', 'https://identeco.de/en/privacy_policy/']
+        ['Imprint', 'https://identeco.de/en/imprint/']
+      ],
+      */
+    }),
+  }
 </script>
 
 <template>
   <body class="outerbody">
-    <body class="innerbody">
+    <div class="innerdiv">
       <header>
         <a href="https://identeco.de/en/">
           <img
@@ -55,6 +88,16 @@ const year = date.getFullYear()
           <a href="https://identeco.de/en/products/" class="split"><v-btn>Ressources</v-btn></a>
         </nav>
       </header>
+      <div class="banner">
+          <img alt="Threat Banner" class="bannerimage" src="@/assets/cyberlower.jpg" />
+          <img
+            alt="Identeco logo"
+            class="bannerlogo"
+            src="@/assets/logo-identeco-white.svg"
+            width="200"
+            height="28.5"
+          />
+    </div>
       <v-container class="text-body">
         <div class="banner">
           <img alt="Threat Banner" class="bannerimage" src="@/assets/cyberlower.jpg" />
@@ -368,13 +411,20 @@ const year = date.getFullYear()
             >Reset all Checks</v-btn
           ></v-container
         >
-        <v-container
-          ><p>
-            hier könnte ihr footer stehen (wenn der vuetify footer wieder funktionieren würde)
-          </p></v-container
-        >
       </v-container>
-    </body>
+      <!-- Footer -->
+      <v-footer class="bg-grey-darken-1">
+    <v-row justify="center" no-gutters>
+      <a v-for="(link, index) in links" :key="index" :href="link[1]"><v-btn class="mx-2"
+        color="white"
+        rounded="xl"
+        variant="text">{{link[0]}}</v-btn></a>
+      <v-col class="text-center mt-4" cols="12">
+        {{ new Date().getFullYear() }} — <strong>Identeco</strong>
+      </v-col>
+    </v-row>
+  </v-footer>
+    </div>
   </body>
 </template>
 
@@ -382,7 +432,7 @@ const year = date.getFullYear()
 body .outerbody {
   background: #c2c6c9;
 }
-body .innerbody {
+body .innerdiv {
   max-width: 87.5rem;
   margin: 0 auto;
   background: #fff;

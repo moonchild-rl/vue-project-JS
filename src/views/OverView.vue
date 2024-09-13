@@ -1,9 +1,8 @@
 <template>
   <v-container class="about">
-    <RouterLink to="/"
-      ><v-btn color="black" variant="" class="rtrnbtn" icon
-        ><img src="../assets/Left_arrow.svg" width="50%" height="50%" /></v-btn
-    ></RouterLink>
+    <RouterLink to="/">
+      <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="large" elevation="0"></v-btn>
+    </RouterLink>
     <v-container>
       <h1>Accounts at risk for domain {{ data.domain }}</h1></v-container
     >
@@ -29,6 +28,9 @@
     >
   </v-container>
   <PlotlyChart :data="chartData" :layout="chartLayout" />
+  <PlotlyChart :data="chartDataTest" :layout="chartLayoutTest" />
+  <PlotlyChart :data=processedChartData :layout="chartLayoutTest" />
+
   <v-container>
     <RouterLink to="/clear" @click="scrollToTop"
       ><v-btn block color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
@@ -58,7 +60,28 @@ export default {
       ],
       chartLayout: {
         title: 'Sample Chart'
+      },
+      chartDataTest: [
+        {
+          x: ['giraffes', 'orangutans', 'monkeys'],
+          y: [10, 15, 20],
+          type: 'bar'
+        }
+      ],
+      chartLayoutTest: {
+        title: 'Testing JSON Data Chart'
       }
+    }
+  },
+  computed: {
+    processedChartData() {
+      return [
+        {
+          x: Object.keys(this.data.data.total),//[this.data.address.company], // X-axis: Extracting "label" from nested JSON
+          y: Object.values(this.data.data.total),//this.data.data.total.new), // Y-axis: Extracting "value" from nested JSON
+          type: 'bar'
+        }
+      ];
     }
   },
   methods: {
@@ -79,8 +102,8 @@ export default {
 }
 img {
   float: left;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   margin: 1rem 1rem;
 }
 h1 h2 {

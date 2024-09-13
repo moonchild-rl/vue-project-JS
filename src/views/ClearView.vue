@@ -73,6 +73,10 @@ img {
   height: 50px;
   margin: 1rem 1rem;
 }
+img.resize {
+  width: 100px;
+  height: 100px;
+}
 h1 {
   text-align: center;
 }
