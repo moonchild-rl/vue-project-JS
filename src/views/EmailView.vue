@@ -74,4 +74,8 @@ h1 {
 p {
   text-align: left;
 }
+article {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
 </style>

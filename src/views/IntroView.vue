@@ -1,75 +1,45 @@
 <template>
   <v-container class="about">
-    <h1>Übersicht der Accountbedrohungen für {{ data.changes_since }}</h1>
-    <br />
-    <p>Sehr geehrte Damen und Herren,</p>
-    <br />
+    <article>
+      <h1 class="intro-header">Intoduction</h1>
     <p>
-      wir danken Ihnen für Ihr Vertrauen in unser Unternehmen. Im Folgenden erhalten Sie den
-      Lagebericht für {{ data.changes_since }}.
+      Criminals use a variety of methods to obtain large amounts of valid access data. For
+example, security vulnerabilities in IT systems of online services and companies are
+attacked in order to copy user databases.
     </p>
-    <br />
-    <p v-if="data.data.total.new > 0">
-      Im Vergleich zum Vormonat haben wir eine Veränderung bei den Einträgen in unserer Datenbank
-      festgestellt. Wir möchten Sie daher auf die aktuellen Zahlen bzgl. Ihrer Domain aufmerksam
-      machen.
-    </p>
-    <br />
+    <br/>
     <p>
-      Im letzten Monat wurden {{ data.data.total.current - data.data.total.new }} geleakte
-      Credentials registriert. Dieser Wert liegt nun bei {{ data.data.total.current }}. Das
-      entspricht einer Zunahme von {{ data.data.total.increase_percent }} % im Vergleich zum
-      Vormonat.
+      Malware or phishing methods are also used to steal the access data directly from the
+user. As a result, many collections of so-called data leaks containing access data are
+traded and distributed publicly on the Internet.
     </p>
-    <br />
-    <p v-if="data.data.total.new > 0">
-      HANDLUNGSEMPFEHLUNG: Aufgrund der vorhandenen Risiken empfehlen wir Ihnen, die betroffenen
-      E-Mail-Adressen und Accounts zu überprüfen. Bitte informieren Sie die betroffenen Mitarbeiter
-      und lassen Sie betroffene Passwörter ändern, um die Sicherheit Ihrer Unternehmensdienste
-      weiterhin zu gewährleisten.
-    </p>
-    <br />
+    <br/>
     <p>
-      Als unser Kunde können Sie das Leak Monitoring Result Tool nutzen, um betroffene Mitarbeitende
-      datenschutzkonform zu identifizieren, zu informieren und entsprechende Schutzmaßnahmen
-      einzuleiten. Sollten Sie noch weitere Fragen haben, stehen wir Ihnen jederzeit gerne zur
-      Verfügung.
+      Criminals use leaked login names, email addresses and passwords to act on behalf of
+your company’s employees and access, manipulate or delete your and your business
+partners’ resources (e.g. online services, files, correspondences).
     </p>
-    <br />
-    <p>Mit freundlichen Grüßen</p>
+    <br/>
+    <p>
+      The problem is amplified because many people use the same credentials on multiple
+online services. With stolen access data for a single service, all user accounts secured
+with it are thus at risk.
+    </p>
+    <br/>
+    <p>
+      This report gives you information about the extent of affected user accounts of your
+domain. For this purpose, Identeco continuously collects these compromised creden-
+tials from all areas of the Internet, processes them in a GDPR-compliant manner and
+then provides you with protection against unauthorized access as a service.
+    </p>
+    <br/>
     <img alt="ad-footer" class="ad-banner" src="@/assets/Gefahr_Grafik.svg" />
-    <p>
-      Kriminelle erbeuten auf unterschiedlichen Wegen umfangreiche Mengen an validen Zugangsdaten.
-      Beispielsweise werden dazu Sicherheitslücken in IT-Systemen von Onlinediensten und Unternehmen
-      ausgenutzt, um die Benutzerdatenbanken zu kopieren.
-    </p>
-    <p>
-      Auch werden Schadsoftware oder Phishing-Methoden eingesetzt, um die Zugangsdaten direkt beim
-      Benutzer zu entwenden. Das führt dazu, dass im Internet viele Sammlungen sogenannter
-      Datenleaks verfügbar sind. Diese enthalten häufig Zugangsdaten, wie Benutzername und Passwort.
-      Kriminelle handeln mit solchen Logindaten, sodass diese Daten eine hohe Verbreitung haben.
-    </p>
-    <p>
-      Kriminelle nutzen diese Daten, um im Namen der Mitarbeiter Ihres Unternehmens zu agieren und
-      auf Ihre internen Ressourcen und die Ressourcen Ihrer Geschäftspartner zuzugreifen, diese zu
-      manipulieren oder zu löschen. Insbesondere externe Plattformen (Ausschreibungsportale,
-      Einkaufsportale, usw.) sind hiervon betroffen.
-    </p>
-    <p>
-      Die Problematik wird verstärkt, da viele Personen bei mehreren Onlinediensten die gleichen
-      Zugangsdaten verwenden. Mit entwendeten Zugangsdaten eines einzelnen Dienstes sind somit alle
-      damit abgesicherten Benutzerkonten gefährdet.
-    </p>
-    <p>
-      Dieser Lagebericht gibt Ihnen Auskunft über den Umfang betroffener Benutzerkonten Ihrer
-      Domain. Dazu sammelt Identeco kontinuierlich diese gefährlichen Zugangsdaten aus allen
-      Bereichen des Internets, arbeitet diese DSGVO-konform auf und stellt Ihnen anschließend den
-      Schutz vor unbefugtem Zugriff als Dienstleistung zur Verfügung.
-    </p> </v-container
+  </article>
+  </v-container
   ><v-container>
     <RouterLink to="/overview" @click="scrollToTop"
       ><v-btn block color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-        >Continue to Overview</v-btn
+        >Continue to the Overview</v-btn
       ></RouterLink
     >
   </v-container>
@@ -92,6 +62,13 @@ export default {
 </script>
 
 <style scoped>
+.about {
+  max-width: 64.5rem;
+  font-size: 1.1em;
+  line-height: 1.5;
+  color: #5b6770;
+  font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+}
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
@@ -102,14 +79,23 @@ export default {
 h1 {
   text-align: left;
 }
+.intro-header{
+  padding-left: 10px;
+  margin-bottom: 15px;
+  color: #00426bce;
+}
 p {
   text-align: left;
   margin: 0.5rem;
 }
+article {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
 img {
   margin-top: -14rem;
-  margin-bottom: -13rem;
-  margin-left: -11rem;
-  margin-right: -11rem;
+  margin-bottom: -12.5rem;
+  margin-left: -22.5rem;
+  margin-right: -22.5rem;
 }
 </style>

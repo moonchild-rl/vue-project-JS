@@ -81,4 +81,8 @@ p {
 .vli {
   text-align: center;
 }
+article {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <v-container class="about">
+    <v-container class="header-row">
     <RouterLink to="/">
-      <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="large" elevation="0"></v-btn>
+      <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
     </RouterLink>
-    <v-container>
-      <h1>Accounts at risk for domain {{ data.domain }}</h1></v-container
-    >
+    <h1>Accounts at risk for domain {{ data.domain }}</h1>
+    </v-container>
     <v-container>
       <p>
         Insgesamt befinden sich {{ data.data.total.current }} Einträge, davon
@@ -100,6 +100,10 @@ export default {
     flex-direction: column;
   }
 }
+.header-row{
+  display: flex;
+  align-items: center; /* Vertically center the button and text */
+}
 img {
   float: left;
   width: 100px;
@@ -112,4 +116,8 @@ h1 h2 {
 p {
   text-align: left;
 }
+article {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
 </style>

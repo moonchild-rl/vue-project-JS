@@ -39,39 +39,43 @@ const year = date.getFullYear()
 const links = [
         ['Home', 'https://identeco.de/en/'],
         ['Products', 'https://identeco.de/en/products/'],
-        ['About Us', 'https://identeco.de/en/about/']
-        /*
-        ['Blog', 'https://identeco.de/en/blog/']
-        ['Press', 'https://identeco.de/en/press/']
-        ['Contact', 'https://identeco.de/en/contact/']
-        ['Privacy Policy', 'https://identeco.de/en/privacy_policy/']
+        ['About Us', 'https://identeco.de/en/about/'],
+        ['Blog', 'https://identeco.de/en/blog/'],
+        ['Press', 'https://identeco.de/en/press/'],
+        ['Contact', 'https://identeco.de/en/contact/'],
+        ['Privacy Policy', 'https://identeco.de/en/privacy_policy/'],
         ['Imprint', 'https://identeco.de/en/imprint/']
-        */
       ]
 </script>
-<script> 
-  export default {
-    data: () => ({
-      /*
-      links: [
-        ['Home', 'https://identeco.de/en/'],
-        ['Products', 'https://identeco.de/en/products/'],
-        ['About Us', 'https://identeco.de/en/about/']
-        ['Blog', 'https://identeco.de/en/blog/']
-        ['Blog', 'https://identeco.de/en/blog/']
-        ['Press', 'https://identeco.de/en/press/']
-        ['Contact', 'https://identeco.de/en/contact/']
-        ['Privacy Policy', 'https://identeco.de/en/privacy_policy/']
-        ['Imprint', 'https://identeco.de/en/imprint/']
-      ],
-      */
-    }),
+<script>
+//import jsonData to use on first page
+import jsonData from './assets/jsonData.json'
+export default {
+    data: () => {
+      return {
+        data: jsonData
+    }
+    },
+    //Compute month and year from the Json for the banner
+    computed: {
+    // Extract the month and year from changes_since
+    banner_month() {
+      const date = new Date(this.data.changes_since);
+      // Get month name, adjust as Date.getMonth() is zero-indexed (0 = January)
+      return date.toLocaleString('default', { month: 'long' });
+    },
+    banner_year() {
+      const date = new Date(this.data.changes_since);
+      return date.getFullYear();
+    }
+  }
   }
 </script>
 
 <template>
   <body class="outerbody">
     <div class="innerdiv">
+      <!-- Header -->
       <header>
         <a href="https://identeco.de/en/">
           <img
@@ -88,6 +92,7 @@ const links = [
           <a href="https://identeco.de/en/products/" class="split"><v-btn>Ressources</v-btn></a>
         </nav>
       </header>
+      <!-- Banner -->
       <div class="banner">
           <img alt="Threat Banner" class="bannerimage" src="@/assets/cyberlower.jpg" />
           <img
@@ -97,23 +102,13 @@ const links = [
             width="200"
             height="28.5"
           />
-    </div>
-      <v-container class="text-body">
-        <div class="banner">
-          <img alt="Threat Banner" class="bannerimage" src="@/assets/cyberlower.jpg" />
-          <img
-            alt="Identeco logo"
-            class="bannerlogo"
-            src="@/assets/logo-identeco-white.svg"
-            width="200"
-            height="28.5"
-          />
-          <div class="caption-header">
-            <h1 class="bannerheader">Account Leak Report {{ month }} {{ year }}</h1>
-            <h2 class="bannerheader" style="font-size: 30px">FOR YOUR DOMAIN example.net</h2>
+          <div class="caption-div">
+            <h1 class="caption-text" style="font-size: 50px">Account Leak Report {{ banner_month }} {{ banner_year }}</h1>
+            <h2 class="caption-text" style="font-size: 30px">For Your Domain "{{ data.domain }}"</h2>
           </div>
-        </div>
-        <br />
+      </div>
+      <!-- Text-body -->
+      <v-container class="text-body">
 
         <main><RouterView /></main>
 
@@ -412,6 +407,7 @@ const links = [
           ></v-container
         >
       </v-container>
+
       <!-- Footer -->
       <v-footer class="bg-grey-darken-1">
     <v-row justify="center" no-gutters>
@@ -420,7 +416,7 @@ const links = [
         rounded="xl"
         variant="text">{{link[0]}}</v-btn></a>
       <v-col class="text-center mt-4" cols="12">
-        {{ new Date().getFullYear() }} — <strong>Identeco</strong>
+        {{ year }} — <strong>Identeco</strong>
       </v-col>
     </v-row>
   </v-footer>
@@ -432,7 +428,7 @@ const links = [
 body .outerbody {
   background: #c2c6c9;
 }
-body .innerdiv {
+.innerdiv {
   max-width: 87.5rem;
   margin: 0 auto;
   background: #fff;
@@ -550,17 +546,17 @@ nav a {
   height: 30px;
 }
 
-.caption-header {
+.caption-div {
   position: absolute;
-  text-align: left;
-  bottom: 3rem;
-  font-size: 25px;
+  bottom: 4.5rem;
+  left: 13.5rem;
 }
 
-.bannerheader {
+
+.caption-text {
   text-align: left;
-  margin-left: 20px;
-  color: #fff;
+  margin-left: 1rem;
+  color: #ffffffdc;
 }
 
 h1,
