@@ -1,25 +1,28 @@
 <template>
   <v-container class="about">
-    <RouterLink to="/sources"
-      ><v-btn color="black" variant="" class="rtrnbtn" icon
-        ><img src="../assets/Left_arrow.svg" width="50%" height="50%" /></v-btn
-    ></RouterLink>
-    <h1>Ausschließlich E-Mail-Adresse</h1>
-    <div v-for="(item, key) in data.data.email" :key="key">
-      <p>
-        <b>{{ key }}</b>
-      </p>
-      <p>{{ item }}</p>
-    </div>
-    <p>
-      <b>Mögliche Auswirkungen:</b><br />
-      Mit validen E-Mail-Adressen steigt das SPAM-Aufkommen und Angreifer sind bei der Zustellung
-      von Schadsoftware erfolgreicher. Auch steigt das Risiko für gezielte
-      Social-Engineering-Angriffe in dem vermeintlich korrekte Absender oder Mitempfänger in E-Mails
-      von Angreifer verwendet werden. Eine besondere Art von Social-Engineering-Angriffen ist z.B.
-      CEO-Fraud. Dabei wird im Namen der Geschäfts- führer oder einer anderen berechtigten Person
-      die Überweisung hoher Geldbeträge angewiesen.
+    <article>
+      <v-container class="header-row">
+    <RouterLink to="/sources">
+      <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
+    </RouterLink>
+    <h1>Recommended Action</h1>
+    </v-container>
+    <p style="font-weight: bold">
+      If an email address and password are part of a data leak, they can usually be used
+directly to access company services. We <span style="text-decoration: underline">strongly</span> recommend to 
+inform affected employees and change the passwords.
     </p>
+    <br/>
+    <p style="font-weight: bold">
+      To identify affected employees, book our Identity Guard - Leak Monitoring subscrip-
+tion today and identify affected email addresses in a privacy-compliant manner.
+    </p>
+    <br/>
+    <p>
+      We will be happy to provide you with an individual offer to protect yourself and your
+company in the best possible way. Contact us directly or visit our website below.
+    </p>
+  </article>
   </v-container>
 </template>
 
@@ -40,6 +43,13 @@ export default {
 </script>
 
 <style scoped>
+.about {
+  max-width: 64.5rem;
+  font-size: 1.1em;
+  line-height: 1.5;
+  color: #5b6770;
+  font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+}
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
@@ -47,14 +57,25 @@ export default {
     flex-direction: column;
   }
 }
-img {
+img.resize {
+  width: 75px;
+  height: 75px;
   float: left;
-  width: 50px;
-  height: 50px;
   margin: 1rem 1rem;
 }
 h1 {
   text-align: center;
+  color: #00426be0;
+  font-size: 35px;
+}
+h2 {
+  text-align: center;
+  color: #00426be0;
+  font-size: 30px;
+}
+.header-row{
+  display: flex;
+  align-items: center; /* Vertically center the button and text */
 }
 p {
   text-align: left;

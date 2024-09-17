@@ -34,14 +34,14 @@ then provides you with protection against unauthorized access as a service.
     </p>
     <br/>
     <img alt="ad-footer" class="ad-banner" src="@/assets/Gefahr_Grafik.svg" />
-  </article>
-  </v-container
-  ><v-container>
-    <RouterLink to="/overview" @click="scrollToTop"
-      ><v-btn block color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
+    <v-container>
+    <RouterLink to="/overview" @click="scrollToTop; check1 = True"
+      ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
         >Continue to the Overview</v-btn
       ></RouterLink
     >
+  </v-container>
+  </article>
   </v-container>
 </template>
 
@@ -78,11 +78,11 @@ export default {
 }
 h1 {
   text-align: left;
+  color: #00426be0;
 }
 .intro-header{
   padding-left: 10px;
   margin-bottom: 15px;
-  color: #00426bce;
 }
 p {
   text-align: left;

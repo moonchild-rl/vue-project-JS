@@ -32,7 +32,7 @@ const months = [
   'December'
 ]
 const date = new Date()
-const month = months[date.getMonth()]
+//const month = months[date.getMonth()]
 const year = date.getFullYear()
 
 //Links for Footer
@@ -67,7 +67,15 @@ export default {
     banner_year() {
       const date = new Date(this.data.changes_since);
       return date.getFullYear();
-    }
+    },
+   checkSum () {
+    const sum = (Number(check1) +
+                Number(check2) +
+                Number(check3) +
+                Number(check4) +
+                Number(check5))
+                return sum;
+            }
   }
   }
 </script>
@@ -115,9 +123,9 @@ export default {
         <v-container>
           <v-row align="center" justify="space-evenly">
             <v-col cols="12" md="4">
-              <v-card title="Übersicht" subtitle="optional">
+              <v-card title="Overview">
                 <v-card-text>
-                  Übersicht der Veränderungen und kurze Beschreibung der Quellen
+                  See the new data available
                 </v-card-text>
                 <v-card-actions>
                   <RouterLink to="/overview" @click="check1 = true"
@@ -130,12 +138,12 @@ export default {
             </v-col>
 
             <v-col cols="12" md="4">
-              <v-card title="E-Mail-Adresse und Passwort im Klartext" subtitle="optional">
-                <v-card-text>Klartext kurze Beschreibung </v-card-text>
+              <v-card title="Clear Passwords">
+                <v-card-text>Passwords that were found in plain text</v-card-text>
                 <v-card-actions>
                   <RouterLink to="/clear" @click="check2 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Passwords in Clear</v-btn
+                      >Clear passwords</v-btn
                     ></RouterLink
                   >
                 </v-card-actions>
@@ -143,12 +151,12 @@ export default {
             </v-col>
 
             <v-col cols="12" md="4">
-              <v-card title="Hash-Werte von  Passwörtern" subtitle="optional">
-                <v-card-text> E-Mail-Adresse und Hash-Wert eines Passworts kombiniert </v-card-text>
+              <v-card title="Hashes">
+                <v-card-text> Hashes found with an email </v-card-text>
                 <v-card-actions>
                   <RouterLink to="/hashed" @click="check3 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Hash combinations</v-btn
+                      >Hashes of a password</v-btn
                     ></RouterLink
                   >
                 </v-card-actions>
@@ -156,32 +164,32 @@ export default {
             </v-col>
 
             <v-col cols="12" md="4">
-              <v-card title="Ausschließlich E-Mail-Adresse" subtitle="optional">
-                <v-card-text> Ausschließlich E-Mail-Adresse kurze Beschreibung </v-card-text>
+              <v-card title="Email only">
+                <v-card-text> Only an email was found </v-card-text>
                 <v-card-actions>
                   <RouterLink to="/email" @click="check4 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Emails only & Duplicates</v-btn
+                      >Only email</v-btn
                     ></RouterLink
                   >
                 </v-card-actions>
               </v-card>
             </v-col>
             <v-col cols="12" md="4">
-              <v-card title="Sources" subtitle="optional">
-                <v-card-text> Checkkarte </v-card-text>
+              <v-card title="Sources">
+                <v-card-text> Sources of the Database </v-card-text>
                 <v-card-actions>
                   <RouterLink to="/sources" @click="check5 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Recommendation</v-btn
+                      >Sources</v-btn
                     ></RouterLink
                   >
                 </v-card-actions>
               </v-card>
             </v-col>
             <v-col cols="12" md="4">
-              <v-card title="Letzte Karte nach Check5" subtitle="optional">
-                <v-card-text> Checkkarte </v-card-text>
+              <v-card title="Recommended Action">
+                <v-card-text> Recommendations for actions to take </v-card-text>
                 <v-card-actions>
                   <RouterLink to="/recommendation"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
@@ -197,8 +205,8 @@ export default {
         <v-container>
           <v-alert
             v-if="check1 && check2 && check3 && check4 && check5"
-            text="Sie haben alle Checks durchgeführt"
-            title="Congratulations!"
+            text="You read the entire report"
+            title="Success"
             type="success"
             icon="$success"
             close-label="Close Alert"
@@ -207,65 +215,65 @@ export default {
             closable
           ></v-alert>
           <v-alert
-            v-if="!check1 && !check2 && !check3 && !check4 && !check5"
-            text="Bitte führen Sie alle Checks oben durch um Schwachstellen für Ihr Unternehmen zu verhindern"
-            title="Ihr Unternehmen ist möglicherweise kompromittiert!"
+            v-if="(Number(check1) +
+                Number(check2) +
+                Number(check3) +
+                Number(check4) +
+                Number(check5)) == 0"
+            text="Your company might be in danger"
+            title="Danger"
             type="error"
             icon="$error"
+            closable
           ></v-alert>
           <v-alert
-            v-if="(((check1 !== check2) !== check3) !== check4) !== check5"
-            text="Wenn nicht alle Checks durchgeführt werden besteht möglicherweise ein Angriffsvektor auf Ihr Unternehmen"
-            title="Bitte führen Sie alle Checks durch"
+            v-if="((Number(check1) +
+                Number(check2) +
+                Number(check3) +
+                Number(check4) +
+                Number(check5)) > 0) && ((Number(check1) +
+                Number(check2) +
+                Number(check3) +
+                Number(check4) +
+                Number(check5))) < 5"
+            text="Please read the entire report"
+            title="Warning"
             type="warning"
             icon="$warning"
+            closable
           ></v-alert>
         </v-container>
         <br />
         <v-container>
           <v-card>
-            <v-card-title v-if="check1 && check2 && check3 && check4 && check5">
-              Empfohlene Maßnahme
+            <v-card-title>
+            Take action now and secure your company's data!        
             </v-card-title>
-            <v-card-title v-else> Please complete all Checks! </v-card-title>
-            <v-card-subtitle v-if="check1 && check2 && check3 && check4 && check5">
-              Wenn eine E-Mail-Adresse und ein Passwort Teil eines Datenlecks sind, können diese in
-              der Regel direkt für den Zugang zu Unternehmensdiensten verwendet
-              werden.</v-card-subtitle
+            <v-card-subtitle></v-card-subtitle
             >
-            <v-card-subtitle v-else>
-              Pass the Check by taking a look at all the different Threats!
-            </v-card-subtitle>
-            <v-card-text v-if="check1 && check2 && check3 && check4 && check5">
-              Wir empfehlen <u>dringend</u>, die betroffenen Mitarbeiterinnen und Mitarbeiter zu
-              informieren und die Passwörter zu ändern. Um betroffene Mitarbeitende zu ermitteln,
-              buchen Sie noch heute unser Identity Guard - Leak Monitoring Abonnement und
-              identifizieren Sie datenschutzkonform die betroffenen E-Mail-Adressen.
-              <v-spacer></v-spacer> Schauen Sie sich alle Produkte rund um Identity Guard
-              an!</v-card-text
+            <v-card-text>
+              <v-spacer></v-spacer> </v-card-text
             >
-            <v-card-text v-else></v-card-text>
             <v-card-actions>
               <a href="https://identeco.de/en/products/"
-                ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                  >Call to action</v-btn
+                ><v-btn color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
+                  >Book Identity Guard now!</v-btn
                 ></a
               >
             </v-card-actions>
           </v-card>
         </v-container>
         <br />
-        <!-- Progress-Cirlce if all checks are completed -->
         <v-container class="progress-circle">
-          <v-progress-circular
-            v-if="check1 && check2 && check3 && check4 && check5"
+          <!-- Progress-Cirlce if ALL checks are completed -->
+          <v-progress-circular v-if="(Number(check1) +
+                  Number(check2) +
+                  Number(check3) +
+                  Number(check4) +
+                  Number(check5)) == 5"
             color="green"
             :model-value="
-              ((Number(check1) +
-                Number(check2) +
-                Number(check3) +
-                Number(check4) +
-                Number(check5)) *
+              (checkSum *
                 100) /
               5
             "
@@ -285,66 +293,39 @@ export default {
               %
             </template></v-progress-circular
           >
-          <!-- OLD CIRCLES 
-          <v-progress-circular
-            v-if="
-              (check1 || check2 || check3 || check4) &&
-              Number(check1) + Number(check2) + Number(check3) + Number(check4) == 3
-            "
-            color="amber-lighten-1"
+          <!-- Progress-Cirlce if NO checks are completed -->
+          <v-progress-circular v-else-if="(Number(check1) +
+                  Number(check2) +
+                  Number(check3) +
+                  Number(check4) +
+                  Number(check5)) == 0"
+            color="red"
             :model-value="
-              ((Number(check1) + Number(check2) + Number(check3) + Number(check4)) * 100) / 4
+              (checkSum *
+                100) /
+              5
             "
             :size="100"
             :width="15"
           >
             <template v-slot:default>
-              {{ ((Number(check1) + Number(check2) + Number(check3) + Number(check4)) * 100) / 4 }}
+              {{
+                ((Number(check1) +
+                  Number(check2) +
+                  Number(check3) +
+                  Number(check4) +
+                  Number(check5)) *
+                  100) /
+                5
+              }}
               %
             </template></v-progress-circular
           >
-          <v-progress-circular
-            v-if="Number(check1) + Number(check2) + Number(check3) + Number(check4) == 2"
+          <!-- Progress-Cirlce if NOT all but SOME checks are completed -->
+          <v-progress-circular v-else
             color="amber"
             :model-value="
-              ((Number(check1) + Number(check2) + Number(check3) + Number(check4)) * 100) / 4
-            "
-            :size="100"
-            :width="15"
-          >
-            <template v-slot:default>
-              {{ ((Number(check1) + Number(check2) + Number(check3) + Number(check4)) * 100) / 4 }}
-              %
-            </template></v-progress-circular
-          >
-          <v-progress-circular
-            v-if="Number(check1) + Number(check2) + Number(check3) + Number(check4) == 1"
-            color="orange"
-            :model-value="
-              ((Number(check1) + Number(check2) + Number(check3) + Number(check4)) * 100) / 4
-            "
-            :size="100"
-            :width="15"
-          >
-            <template v-slot:default>
-              {{ ((Number(check1) + Number(check2) + Number(check3) + Number(check4)) * 100) / 4 }}
-              %
-            </template></v-progress-circular
-          >
-          -->
-          <!-- Progress-Cirlce if no check is completed -->
-          <v-progress-circular
-            v-if="
-              Number(check1) + Number(check2) + Number(check3) + Number(check4) + Number(check5) ==
-              0
-            "
-            color="blue-darken-3"
-            :model-value="
-              ((Number(check1) +
-                Number(check2) +
-                Number(check3) +
-                Number(check4) +
-                Number(check5)) *
+              (checkSum *
                 100) /
               5
             "
@@ -364,40 +345,7 @@ export default {
               %
             </template></v-progress-circular
           >
-          <!-- Progress-Cirlce if some checks are completed -->
-          <v-progress-circular
-            v-if="
-              Number(check1) + Number(check2) + Number(check3) + Number(check4) + Number(check5) >
-                0 &&
-              Number(check1) + Number(check2) + Number(check3) + Number(check4) + Number(check5) <=
-                5
-            "
-            color="amber"
-            :model-value="
-              ((Number(check1) +
-                Number(check2) +
-                Number(check3) +
-                Number(check4) +
-                Number(check5)) *
-                100) /
-              5
-            "
-            :size="100"
-            :width="15"
-          >
-            <template v-slot:default>
-              {{
-                ((Number(check1) +
-                  Number(check2) +
-                  Number(check3) +
-                  Number(check4) +
-                  Number(check5)) *
-                  100) /
-                5
-              }}
-              %
-            </template></v-progress-circular
-          >
+
           <h3>Check-Fortschritt</h3>
         </v-container>
         <br />

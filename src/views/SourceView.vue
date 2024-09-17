@@ -1,32 +1,31 @@
 <template>
   <v-container class="about">
-    <RouterLink to="/email"
-      ><v-btn color="black" variant="" class="rtrnbtn" icon
-        ><img src="../assets/Left_arrow.svg" width="50%" height="50%" /></v-btn
-    ></RouterLink>
-    <h1>Ausschließlich E-Mail-Adresse</h1>
-    <div v-for="(item, key) in data.data.email" :key="key">
-      <p>
-        <b>{{ key }}</b>
-      </p>
-      <p>{{ item }}</p>
-    </div>
+    <article>
+      <v-container class="header-row">
+    <RouterLink to="/email">
+      <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
+    </RouterLink>
+    <h1>Further explanation of Results</h1>
+    </v-container>
+    <h1>Data sources for this report</h1>
     <p>
-      <b>Mögliche Auswirkungen:</b><br />
-      Mit validen E-Mail-Adressen steigt das SPAM-Aufkommen und Angreifer sind bei der Zustellung
-      von Schadsoftware erfolgreicher. Auch steigt das Risiko für gezielte
-      Social-Engineering-Angriffe in dem vermeintlich korrekte Absender oder Mitempfänger in E-Mails
-      von Angreifer verwendet werden. Eine besondere Art von Social-Engineering-Angriffen ist z.B.
-      CEO-Fraud. Dabei wird im Namen der Geschäfts- führer oder einer anderen berechtigten Person
-      die Überweisung hoher Geldbeträge angewiesen.
+      Identeco’s IT security experts collect stolen identity data from appropriate sources for
+analysis. Overall, the analyzed data for your domain {{ data.domain }} was found within
+{{ data.data.sources.collections }} publicly available leak collections on the Internet. Account data concerning your
+domain was extracted from {{ data.data.sources.files }} files. This means that on average {{ data.data.sources.avg_identities_per_collection }} data points
+related to your domain are included in each collection.
     </p>
-  </v-container>
-  <v-container>
+    <br/>
+    <img src="@/assets/data-sources-graph.svg" alt="sketch" class="resize" />
+    <br/>
+    <v-container>
     <RouterLink to="/recommendation" @click="scrollToTop"
-      ><v-btn block color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
+      ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
         >Continue to Recommended Actions</v-btn
       ></RouterLink
     >
+  </v-container>
+  </article>
   </v-container>
 </template>
 
@@ -47,6 +46,13 @@ export default {
 </script>
 
 <style scoped>
+.about {
+  max-width: 64.5rem;
+  font-size: 1.1em;
+  line-height: 1.5;
+  color: #5b6770;
+  font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+}
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
@@ -55,13 +61,25 @@ export default {
   }
 }
 img {
-  float: left;
-  width: 50px;
-  height: 50px;
-  margin: 1rem 1rem;
+ justify-content: center;
+ align-content: center;
+ scale: 60%;
+ margin-top: -6rem;
+ margin-bottom: -6rem;
+}
+.header-row{
+  display: flex;
+  align-items: center; /* Vertically center the button and text */
 }
 h1 {
   text-align: center;
+  color: #00426be0;
+  font-size: 35px;
+}
+h2 {
+  text-align: center;
+  color: #00426be0;
+  font-size: 30px;
 }
 p {
   text-align: left;

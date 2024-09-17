@@ -1,5 +1,6 @@
 <template>
   <v-container class="about">
+    <article>
     <v-container class="header-row">
     <RouterLink to="/">
       <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
@@ -7,37 +8,39 @@
     <h1>Accounts at risk for domain {{ data.domain }}</h1>
     </v-container>
     <v-container>
-      <p>
-        Insgesamt befinden sich {{ data.data.total.current }} Einträge, davon
-        {{ data.data.total.new }} neue Einträge, in unserer Datenbank gestohlener Identitätsdaten,
-        deren E-Mail-Adresse zu Ihrer Domain {{ data.domain }} zugehörig ist. Da Sammlungen von
-        Zugangsdaten häufig auch mehrfach und unter verschiedenen Sammlungsnamen veröffentlicht
-        werden, ist es möglich, dass identische Zugangsdaten mehrfach in unserer Datenbank vorhanden
-        sind (Duplikate). Alle Datenbankeinträge beziehen sich auf insgesamt
-        {{ data.data.email.current }} verschiedene E-Mail-Adressen Ihrer Domain.
-      </p></v-container
+      <v-row
+      class="d-flex justify-center align-center"
+      height="100vh"
     >
-    <v-container>
-      <p>
-        Unique combinations of email adress and password or hash:
-        {{ data.data.total.current - data.data.duplicates.current }}
-      </p>
+    <PlotlyChart :data=processedPieChartData :layout="chartLayoutPie" />
+    </v-row>
     </v-container>
     <v-container>
-      <p>Duplicates: {{ data.data.duplicates.current }}</p></v-container
-    >
+      <p>
+        In total there are {{ data.data.total.current }} records of identity data that have an e-mail address of your
+domain {{ data.domain }} in our leak database. Because leak data collections are distributed
+in overlapping sets with different identifiers, there may be multiple records for a single
+set of identity information. All identified entries for your domain have {{ data.data.total.current - data.data.duplicates.current }} unique
+e-mail addresses.
+      </p>
   </v-container>
-  <PlotlyChart :data="chartData" :layout="chartLayout" />
-  <PlotlyChart :data="chartDataTest" :layout="chartLayoutTest" />
-  <PlotlyChart :data=processedChartData :layout="chartLayoutTest" />
-
   <v-container>
-    <RouterLink to="/clear" @click="scrollToTop"
-      ><v-btn block color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-        >Continue to Passwords in Clear</v-btn
+      <v-row
+      class="d-flex justify-center align-center"
+      height="100vh"
+    >
+    <PlotlyChart :data=processedPieChartData2 :layout="chartLayoutPie2" />
+    </v-row>
+    </v-container>
+    <v-container>
+    <RouterLink to="/clear" @click="scrollToTop; check2 = True"
+      ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
+        >Continue to Further Explanations</v-btn
       ></RouterLink
     >
   </v-container>
+</article>
+</v-container>
 </template>
 
 <script>
@@ -51,29 +54,24 @@ export default {
   data() {
     return {
       data: jsonData,
-      chartData: [
-        {
-          x: [1, 2, 3, 4, 5],
-          y: [10, 15, 13, 17, 22],
-          type: 'scatter'
-        }
-      ],
-      chartLayout: {
-        title: 'Sample Chart'
+      chartLayoutPie: {
+          height: 400,
+          width: 400,
+          margin: {"t": 100, "b": 0, "l": 0, "r": 0},
+          showlegend: false,
+          title: "Records of your domain in our database"
       },
-      chartDataTest: [
-        {
-          x: ['giraffes', 'orangutans', 'monkeys'],
-          y: [10, 15, 20],
-          type: 'bar'
-        }
-      ],
-      chartLayoutTest: {
-        title: 'Testing JSON Data Chart'
+      chartLayoutPie2: {
+          height: 400,
+          width: 400,
+          margin: {"t": 100, "b": 0, "l": 0, "r": 0},
+          showlegend: false,
+          title: "Makeup of records in our database"
       }
     }
   },
   computed: {
+    /*
     processedChartData() {
       return [
         {
@@ -82,7 +80,32 @@ export default {
           type: 'bar'
         }
       ];
-    }
+    },
+    */
+    processedPieChartData2() {
+      return [
+        {
+          values: [this.data.data.email_password_hash_combinations.current, this.data.data.email.current, this.data.data.duplicates.current],
+          labels: ["Unique combinations", "Unique email adresses", "Duplicates"],
+          type: 'pie',
+          textinfo: "label+percent",
+          textposition: "outside",
+          automargin: true
+        }
+      ];
+    },
+    processedPieChartData() {
+      return [
+        {
+          values: [(this.data.data.total.current-this.data.data.total.new), this.data.data.total.new],
+          labels: ["Old entries", "New entries"],
+          type: 'pie',
+          textinfo: "label+percent",
+          textposition: "outside",
+          automargin: true
+        }
+      ];
+    },
   },
   methods: {
     scrollToTop() {
@@ -93,6 +116,18 @@ export default {
 </script>
 
 <style scoped>
+.about {
+  max-width: 64.5rem;
+  font-size: 1.1em;
+  line-height: 1.5;
+  color: #5b6770;
+  font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+}
+h1{
+  text-align: left;
+  color: #00426be0;
+  font-size: 35px;
+}
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
@@ -109,9 +144,6 @@ img {
   width: 100px;
   height: 100px;
   margin: 1rem 1rem;
-}
-h1 h2 {
-  text-align: center;
 }
 p {
   text-align: left;
