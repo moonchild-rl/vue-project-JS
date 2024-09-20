@@ -16,8 +16,30 @@ async function resetChecks() {
   check5.value = false
 }
 
+function setCheck(index) {
+  switch(index) {
+    case 1:
+      check1.value=true;
+      break;
+    case 2:
+      check2.value=true;
+      break;
+    case 3:
+      check3.value=true;
+      break;
+    case 4:
+      check4.value=true;
+      break;
+    case 5:
+      check5.value=true;
+      break;
+    default:
+      break;
+  }
+}
+
 //Get the current month & year
-const months = [
+/*const months = [
   'January',
   'February',
   'March',
@@ -30,7 +52,7 @@ const months = [
   'October',
   'November',
   'December'
-]
+]*/
 const date = new Date()
 //const month = months[date.getMonth()]
 const year = date.getFullYear()
@@ -51,7 +73,7 @@ const links = [
 //import jsonData to use on first page
 import jsonData from './assets/jsonData.json'
 export default {
-    data: () => {
+  data: () => {
       return {
         data: jsonData
     }
@@ -68,14 +90,14 @@ export default {
       const date = new Date(this.data.changes_since);
       return date.getFullYear();
     },
-   checkSum () {
-    const sum = (Number(check1) +
-                Number(check2) +
-                Number(check3) +
-                Number(check4) +
-                Number(check5))
+    checkSum () {
+      const sum = (Number(this.check1) +
+                Number(this.check2) +
+                Number(this.check3) +
+                Number(this.check4) +
+                Number(this.check5))
                 return sum;
-            }
+    }
   }
   }
 </script>
@@ -115,86 +137,95 @@ export default {
             <h2 class="caption-text" style="font-size: 30px">For Your Domain "{{ data.domain }}"</h2>
           </div>
       </div>
-      <!-- Text-body -->
-      <v-container class="text-body">
+      <div style="display: grid; grid-template-columns: [start] 1fr [content-start] 6fr [content-end] 1fr [end]">
 
-        <main><RouterView /></main>
-
-        <v-container>
-          <v-row align="center" justify="space-evenly">
-            <v-col cols="12" md="4">
-              <v-card title="Overview">
-                <v-card-text>
-                  See the new data available
-                </v-card-text>
-                <v-card-actions>
-                  <RouterLink to="/overview" @click="check1 = true"
+        <div style="position: sticky; float: left; top: 2em; margin: 2em; margin-top: 3em; grid-column: start/content-start; align-self: start"> 
+          <v-list-item title="My Application" subtitle="Vuetify"></v-list-item>
+          <v-divider></v-divider>
+          <v-list-item to="/overview" link title="List Item 1"></v-list-item>
+          <v-list-item to="/clear" link title="List Item 2"></v-list-item>
+          <v-list-item link title="List Item 3"></v-list-item>
+        </div>
+        <!-- Text-body -->
+        <v-container class="text-body" style="grid-column: content-start/content-end">
+          
+          <main><RouterView @set-check="setCheck" /></main>
+          
+          <v-container>
+            <v-row align="center" justify="space-evenly">
+              <v-col cols="12" md="4">
+                <v-card title="Overview">
+                  <v-card-text>
+                    See the new data available
+                  </v-card-text>
+                  <v-card-actions>
+                    <RouterLink to="/overview" @click="check1 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Overview</v-btn
+                    >Overview</v-btn
                     ></RouterLink
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-col>
-
-            <v-col cols="12" md="4">
-              <v-card title="Clear Passwords">
-                <v-card-text>Passwords that were found in plain text</v-card-text>
-                <v-card-actions>
-                  <RouterLink to="/clear" @click="check2 = true"
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+              
+              <v-col cols="12" md="4">
+                <v-card title="Clear Passwords">
+                  <v-card-text>Passwords that were found in plain text</v-card-text>
+                  <v-card-actions>
+                    <RouterLink to="/clear" @click="check2 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Clear passwords</v-btn
+                    >Clear passwords</v-btn
                     ></RouterLink
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-col>
-
-            <v-col cols="12" md="4">
-              <v-card title="Hashes">
-                <v-card-text> Hashes found with an email </v-card-text>
-                <v-card-actions>
-                  <RouterLink to="/hashed" @click="check3 = true"
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+              
+              <v-col cols="12" md="4">
+                <v-card title="Hashes">
+                  <v-card-text> Hashes found with an email </v-card-text>
+                  <v-card-actions>
+                    <RouterLink to="/hashed" @click="check3 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Hashes of a password</v-btn
+                    >Hashes of a password</v-btn
                     ></RouterLink
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-col>
-
-            <v-col cols="12" md="4">
-              <v-card title="Email only">
-                <v-card-text> Only an email was found </v-card-text>
-                <v-card-actions>
-                  <RouterLink to="/email" @click="check4 = true"
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+              
+              <v-col cols="12" md="4">
+                <v-card title="Email only">
+                  <v-card-text> Only an email was found </v-card-text>
+                  <v-card-actions>
+                    <RouterLink to="/email" @click="check4 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Only email</v-btn
+                    >Only email</v-btn
                     ></RouterLink
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="4">
-              <v-card title="Sources">
-                <v-card-text> Sources of the Database </v-card-text>
-                <v-card-actions>
-                  <RouterLink to="/sources" @click="check5 = true"
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4">
+                <v-card title="Sources">
+                  <v-card-text> Sources of the Database </v-card-text>
+                  <v-card-actions>
+                    <RouterLink to="/sources" @click="check5 = true"
                     ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Sources</v-btn
+                    >Sources</v-btn
                     ></RouterLink
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="4">
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4">
               <v-card title="Recommended Action">
                 <v-card-text> Recommendations for actions to take </v-card-text>
                 <v-card-actions>
                   <RouterLink to="/recommendation"
-                    ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
-                      >Recommendation</v-btn
-                    ></RouterLink
+                  ><v-btn color="indigo-darken-3" variant="outlined" size="x-large" rounded="lg"
+                  >Recommendation</v-btn
+                  ></RouterLink
                   >
                 </v-card-actions>
               </v-card>
@@ -241,32 +272,32 @@ export default {
             type="warning"
             icon="$warning"
             closable
-          ></v-alert>
-        </v-container>
-        <br />
-        <v-container>
-          <v-card>
-            <v-card-title>
-            Take action now and secure your company's data!        
-            </v-card-title>
-            <v-card-subtitle></v-card-subtitle
-            >
-            <v-card-text>
-              <v-spacer></v-spacer> </v-card-text
-            >
-            <v-card-actions>
-              <a href="https://identeco.de/en/products/"
-                ><v-btn color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
-                  >Book Identity Guard now!</v-btn
-                ></a
-              >
-            </v-card-actions>
-          </v-card>
-        </v-container>
-        <br />
-        <v-container class="progress-circle">
-          <!-- Progress-Cirlce if ALL checks are completed -->
-          <v-progress-circular v-if="(Number(check1) +
+            ></v-alert>
+          </v-container>
+          <br />
+          <v-container>
+            <v-card>
+              <v-card-title>
+                Take action now and secure your company's data!        
+              </v-card-title>
+              <v-card-subtitle></v-card-subtitle
+                >
+                <v-card-text>
+                  <v-spacer></v-spacer> </v-card-text
+                  >
+                  <v-card-actions>
+                    <a href="https://identeco.de/en/products/"
+                    ><v-btn color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
+                    >Book Identity Guard now!</v-btn
+                    ></a
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-container>
+              <br />
+              <v-container class="progress-circle">
+                <!-- Progress-Cirlce if ALL checks are completed -->
+                <v-progress-circular v-if="(Number(check1) +
                   Number(check2) +
                   Number(check3) +
                   Number(check4) +
@@ -274,27 +305,27 @@ export default {
             color="green"
             :model-value="
               (checkSum *
-                100) /
+              100) /
               5
-            "
+              "
             :size="100"
             :width="15"
-          >
+            >
             <template v-slot:default>
               {{
                 ((Number(check1) +
-                  Number(check2) +
-                  Number(check3) +
-                  Number(check4) +
-                  Number(check5)) *
-                  100) /
+                Number(check2) +
+                Number(check3) +
+                Number(check4) +
+                Number(check5)) *
+                100) /
                 5
               }}
               %
             </template></v-progress-circular
-          >
-          <!-- Progress-Cirlce if NO checks are completed -->
-          <v-progress-circular v-else-if="(Number(check1) +
+            >
+            <!-- Progress-Cirlce if NO checks are completed -->
+            <v-progress-circular v-else-if="(Number(check1) +
                   Number(check2) +
                   Number(check3) +
                   Number(check4) +
@@ -302,59 +333,60 @@ export default {
             color="red"
             :model-value="
               (checkSum *
-                100) /
+              100) /
               5
-            "
+              "
             :size="100"
             :width="15"
-          >
+            >
             <template v-slot:default>
               {{
                 ((Number(check1) +
-                  Number(check2) +
-                  Number(check3) +
-                  Number(check4) +
-                  Number(check5)) *
-                  100) /
+                Number(check2) +
+                Number(check3) +
+                Number(check4) +
+                Number(check5)) *
+                100) /
                 5
               }}
               %
             </template></v-progress-circular
-          >
-          <!-- Progress-Cirlce if NOT all but SOME checks are completed -->
-          <v-progress-circular v-else
+            >
+            <!-- Progress-Cirlce if NOT all but SOME checks are completed -->
+            <v-progress-circular v-else
             color="amber"
             :model-value="
               (checkSum *
                 100) /
-              5
-            "
+                5
+                "
             :size="100"
             :width="15"
-          >
+            >
             <template v-slot:default>
               {{
                 ((Number(check1) +
-                  Number(check2) +
-                  Number(check3) +
-                  Number(check4) +
-                  Number(check5)) *
-                  100) /
+                Number(check2) +
+                Number(check3) +
+                Number(check4) +
+                Number(check5)) *
+                100) /
                 5
               }}
               %
             </template></v-progress-circular
-          >
-
-          <h3>Check-Fortschritt</h3>
-        </v-container>
-        <br />
-        <v-container class="rst-container">
-          <v-btn @click="resetChecks()" color="indigo-darken-3" variant="outlined" class="rstbtn"
+            >
+            
+            <h3>Check-Fortschritt</h3>
+          </v-container>
+          <br />
+          <v-container class="rst-container">
+            <v-btn @click="resetChecks()" color="indigo-darken-3" variant="outlined" class="rstbtn"
             >Reset all Checks</v-btn
-          ></v-container
-        >
-      </v-container>
+            ></v-container
+            >
+          </v-container>
+        </div>
 
       <!-- Footer -->
       <v-footer class="bg-grey-darken-1">

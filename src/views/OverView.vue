@@ -33,7 +33,7 @@ e-mail addresses.
     </v-row>
     </v-container>
     <v-container>
-    <RouterLink to="/clear" @click="scrollToTop; check2 = True"
+    <RouterLink to="/clear" @click="scrollToTop(); this.$emit('setCheck', 2)"
       ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
         >Continue to Further Explanations</v-btn
       ></RouterLink
@@ -51,6 +51,7 @@ export default {
   components: {
     PlotlyChart
   },
+  emits: ['setCheck'],
   data() {
     return {
       data: jsonData,

@@ -43,7 +43,7 @@ possible.
       We <span style="text-decoration: underline">strongly</span> advise to inform affected employees and change all involved passwords immediately.</p>
       <br/>
       <v-container>
-    <RouterLink to="/hashed" @click="scrollToTop; check3 = True"
+    <RouterLink to="/hashed" @click="scrollToTop(); check3 = true"
       ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
         >Continue to Hashed Combinations</v-btn
       ></RouterLink

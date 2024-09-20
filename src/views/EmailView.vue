@@ -40,7 +40,7 @@ is ordered in the name of the CEO or another authorized person.
       </p>
     <br/>
     <v-container>
-    <RouterLink to="/sources" @click="scrollToTop; check5 = True"
+    <RouterLink to="/sources" @click="scrollToTop(); check5 = true"
       ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
         >Continue to Data Sources</v-btn
       ></RouterLink

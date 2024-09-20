@@ -35,7 +35,7 @@ then provides you with protection against unauthorized access as a service.
     <br/>
     <img alt="ad-footer" class="ad-banner" src="@/assets/Gefahr_Grafik.svg" />
     <v-container>
-    <RouterLink to="/overview" @click="scrollToTop; check1 = True"
+    <RouterLink to="/overview" @click="scrollToTop(); check1 = true"
       ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
         >Continue to the Overview</v-btn
       ></RouterLink

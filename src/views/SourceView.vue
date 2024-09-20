@@ -1,12 +1,12 @@
 <template>
   <v-container class="about">
-    <article>
-      <v-container class="header-row">
-    <RouterLink to="/email">
-      <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
-    </RouterLink>
-    <h1>Further explanation of Results</h1>
-    </v-container>
+    <div style="position: relative; right: -6.5em; display: flex; flex-direction: row; align-items: center;">
+      <RouterLink to="/email">
+        <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
+      </RouterLink>
+      <h1>Further explanation of Results</h1>
+    </div>
+    <article style="display: flex; flex-direction: column;">
     <h1>Data sources for this report</h1>
     <p>
       Identeco’s IT security experts collect stolen identity data from appropriate sources for
@@ -19,7 +19,7 @@ related to your domain are included in each collection.
     <img src="@/assets/data-sources-graph.svg" alt="sketch" class="resize" />
     <br/>
     <v-container>
-    <RouterLink to="/recommendation" @click="scrollToTop"
+    <RouterLink to="/recommendation" @click="scrollToTop()"
       ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
         >Continue to Recommended Actions</v-btn
       ></RouterLink
@@ -75,6 +75,7 @@ h1 {
   text-align: center;
   color: #00426be0;
   font-size: 35px;
+  width: fit-content;
 }
 h2 {
   text-align: center;

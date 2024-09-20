@@ -46,7 +46,7 @@ access to email accounts and services of your business partners may be possible.
     </v-container>
     <br/>
     <v-container>
-    <RouterLink to="/email" @click="scrollToTop; check4 = True"
+    <RouterLink to="/email" @click="scrollToTop(); check4 = true"
       ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
         >Continue to Emails only</v-btn
       ></RouterLink
