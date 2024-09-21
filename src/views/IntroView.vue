@@ -28,7 +28,7 @@
       <br />
       <p>
         This report gives you information about the extent of affected user accounts of your domain.
-        For this purpose, Identeco continuously collects these compromised creden- tials from all
+        For this purpose, Identeco continuously collects these compromised credentials from all
         areas of the Internet, processes them in a GDPR-compliant manner and then provides you with
         protection against unauthorized access as a service.
       </p>

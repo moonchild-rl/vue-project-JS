@@ -44,7 +44,7 @@
         <br />
         <p>
           <span style="font-weight: bold">Possible consequences:</span> Attackers can actively
-          attack the hash value and, under cer- tain circumstances, can penetrate your company
+          attack the hash value and, under certain circumstances, can penetrate your company
           infrastructure undetected. According to the user rights, files can be copied, modified or
           deleted. In addition, unauthorized access to email accounts and services of your business
           partners may be possible.

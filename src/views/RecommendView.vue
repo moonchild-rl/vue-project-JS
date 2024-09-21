@@ -15,8 +15,8 @@
       </p>
       <br />
       <p style="font-weight: bold">
-        To identify affected employees, book our Identity Guard - Leak Monitoring subscrip- tion
-        today and identify affected email addresses in a privacy-compliant manner.
+        To identify affected employees, book our Identity Guard - Leak Monitoring subscription today
+        and identify affected email addresses in a privacy-compliant manner.
       </p>
       <br />
       <p>

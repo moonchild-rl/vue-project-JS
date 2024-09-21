@@ -34,7 +34,7 @@
         </div>
         <p>
           <span style="font-weight: bold">Possible consequences:</span> Attackers can penetrate your
-          corporate infrastructure unde- tected. According to user rights, files can be copied,
+          corporate infrastructure undetected. According to user rights, files can be copied,
           modified or deleted. In addition, unauthorized access to email accounts and services of
           your business partners may be possible.
         </p>

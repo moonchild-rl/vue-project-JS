@@ -269,7 +269,7 @@ export default {
                   Number(check5) ==
                 0
               "
-              text="Your company might be in danger"
+              text="Your company might be in danger, please read the entire report"
               title="Danger"
               type="error"
               icon="$error"
@@ -384,7 +384,7 @@ export default {
               </template></v-progress-circular
             >
 
-            <h3>Check-Fortschritt</h3>
+            <h3>Check-Progress</h3>
           </v-container>
           <br />
         </v-container>

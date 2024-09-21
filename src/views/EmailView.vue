@@ -28,7 +28,7 @@
         <p>
           <span style="font-weight: bold">Possible consequences:</span> With valid email addresses,
           the volume of SPAM increases and attackers are more successful in delivering malware. The
-          risk of targeted social en- gineering attacks, e.g. email phishing, also increases when
+          risk of targeted social engineering attacks, e.g. email phishing, also increases when
           attackers use supposedly correct senders or co-recipients in emails. A special type of
           social engineering attack is CEO fraud, in which the transfer of large sums of money to an
           attackers bank account is ordered in the name of the CEO or another authorized person.
