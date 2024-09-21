@@ -1,28 +1,39 @@
 <template>
   <v-container class="about">
+    <div class="header-row">
+      <RouterLink to="/sources" @click="this.$emit('setCheck', 5)">
+        <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
+      </RouterLink>
+      <h1>Recommended Action</h1>
+    </div>
     <article>
-      <v-container class="header-row">
-    <RouterLink to="/sources">
-      <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
-    </RouterLink>
-    <h1>Recommended Action</h1>
-    </v-container>
-    <p style="font-weight: bold">
-      If an email address and password are part of a data leak, they can usually be used
-directly to access company services. We <span style="text-decoration: underline">strongly</span> recommend to 
-inform affected employees and change the passwords.
-    </p>
-    <br/>
-    <p style="font-weight: bold">
-      To identify affected employees, book our Identity Guard - Leak Monitoring subscrip-
-tion today and identify affected email addresses in a privacy-compliant manner.
-    </p>
-    <br/>
-    <p>
-      We will be happy to provide you with an individual offer to protect yourself and your
-company in the best possible way. Contact us directly or visit our website below.
-    </p>
-  </article>
+      <p style="font-weight: bold">
+        If an email address and password are part of a data leak, they can usually be used directly
+        to access company services. We
+        <span style="text-decoration: underline">strongly</span> recommend to inform affected
+        employees and change the passwords.
+      </p>
+      <br />
+      <p style="font-weight: bold">
+        To identify affected employees, book our Identity Guard - Leak Monitoring subscrip- tion
+        today and identify affected email addresses in a privacy-compliant manner.
+      </p>
+      <br />
+      <p>
+        We will be happy to provide you with an individual offer to protect yourself and your
+        company in the best possible way. Contact us directly or visit our website below.
+      </p>
+      <br />
+      <h3>Contact:</h3>
+      <p>Phone: +49 (0) 228 286 285 81</p>
+      <p>Email: <a href="mailto:contact@identeco.de">contact@identeco.de</a></p>
+      <p>
+        Web:
+        <a href="https://identeco.de/"
+          ><v-btn density="compact" elevation="0" variant="text" class="rstbtn">Identeco</v-btn></a
+        >
+      </p>
+    </article>
   </v-container>
 </template>
 
@@ -52,7 +63,7 @@ export default {
 }
 @media (min-width: 1024px) {
   .about {
-    min-height: 100vh;
+    min-height: 75vh;
     display: flex;
     flex-direction: column;
   }
@@ -73,15 +84,21 @@ h2 {
   color: #00426be0;
   font-size: 30px;
 }
-.header-row{
+.rstbtn {
+  background-color: rgb(245, 179, 51);
+}
+.header-row {
+  position: relative;
+  right: -6.5em;
   display: flex;
-  align-items: center; /* Vertically center the button and text */
+  flex-direction: row;
+  align-items: center;
 }
 p {
   text-align: left;
 }
 article {
-    padding-left: 12rem;
-    padding-right: 12rem;
-  }
+  padding-left: 12rem;
+  padding-right: 12rem;
+}
 </style>

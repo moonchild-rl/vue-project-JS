@@ -1,46 +1,47 @@
 <template>
   <v-container class="about">
+    <div class="header-row">
+      <RouterLink to="/">
+        <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
+      </RouterLink>
+      <h1>Accounts at risk for domain {{ data.domain }}</h1>
+    </div>
     <article>
-    <v-container class="header-row">
-    <RouterLink to="/">
-      <v-btn class="rtrnbtn" icon="mdi-arrow-left" size="x-large" elevation="0"></v-btn>
-    </RouterLink>
-    <h1>Accounts at risk for domain {{ data.domain }}</h1>
-    </v-container>
-    <v-container>
-      <v-row
-      class="d-flex justify-center align-center"
-      height="100vh"
-    >
-    <PlotlyChart :data=processedPieChartData :layout="chartLayoutPie" />
-    </v-row>
-    </v-container>
-    <v-container>
-      <p>
-        In total there are {{ data.data.total.current }} records of identity data that have an e-mail address of your
-domain {{ data.domain }} in our leak database. Because leak data collections are distributed
-in overlapping sets with different identifiers, there may be multiple records for a single
-set of identity information. All identified entries for your domain have {{ data.data.total.current - data.data.duplicates.current }} unique
-e-mail addresses.
-      </p>
+      <v-container>
+        <v-row class="d-flex justify-center align-center" height="100vh">
+          <PlotlyChart :data="processedPieChartData" :layout="chartLayoutPie" />
+        </v-row>
+      </v-container>
+      <v-container>
+        <p>
+          In total there are {{ data.data.total.current }} records of identity data that have an
+          e-mail address of your domain {{ data.domain }} in our leak database. Because leak data
+          collections are distributed in overlapping sets with different identifiers, there may be
+          multiple records for a single set of identity information. All identified entries for your
+          domain have {{ data.data.total.current - data.data.duplicates.current }} unique e-mail
+          addresses.
+        </p>
+      </v-container>
+      <v-container>
+        <v-row class="d-flex justify-center align-center" height="100vh">
+          <PlotlyChart :data="processedPieChartData2" :layout="chartLayoutPie2" />
+        </v-row>
+      </v-container>
+      <v-container>
+        <RouterLink to="/clear" @click="scrollToTop(), this.$emit('setCheck', 2)"
+          ><v-btn
+            block
+            color="indigo-darken-3"
+            variant="tonal"
+            size="x-large"
+            rounded="lg"
+            class="continue_btn"
+            >Continue to Further Explanations</v-btn
+          ></RouterLink
+        >
+      </v-container>
+    </article>
   </v-container>
-  <v-container>
-      <v-row
-      class="d-flex justify-center align-center"
-      height="100vh"
-    >
-    <PlotlyChart :data=processedPieChartData2 :layout="chartLayoutPie2" />
-    </v-row>
-    </v-container>
-    <v-container>
-    <RouterLink to="/clear" @click="scrollToTop(); this.$emit('setCheck', 2)"
-      ><v-btn block color="indigo-darken-3" variant="tonal" size="x-large" rounded="lg"
-        >Continue to Further Explanations</v-btn
-      ></RouterLink
-    >
-  </v-container>
-</article>
-</v-container>
 </template>
 
 <script>
@@ -56,18 +57,18 @@ export default {
     return {
       data: jsonData,
       chartLayoutPie: {
-          height: 400,
-          width: 400,
-          margin: {"t": 100, "b": 0, "l": 0, "r": 0},
-          showlegend: false,
-          title: "Records of your domain in our database"
+        height: 400,
+        width: 400,
+        margin: { t: 100, b: 0, l: 0, r: 0 },
+        showlegend: false,
+        title: 'Records of your domain in our database'
       },
       chartLayoutPie2: {
-          height: 400,
-          width: 400,
-          margin: {"t": 100, "b": 0, "l": 0, "r": 0},
-          showlegend: false,
-          title: "Makeup of records in our database"
+        height: 400,
+        width: 400,
+        margin: { t: 100, b: 0, l: 0, r: 0 },
+        showlegend: false,
+        title: 'Makeup of records in our database'
       }
     }
   },
@@ -86,27 +87,34 @@ export default {
     processedPieChartData2() {
       return [
         {
-          values: [this.data.data.email_password_hash_combinations.current, this.data.data.email.current, this.data.data.duplicates.current],
-          labels: ["Unique combinations", "Unique email adresses", "Duplicates"],
+          values: [
+            this.data.data.email_password_hash_combinations.current,
+            this.data.data.email.current,
+            this.data.data.duplicates.current
+          ],
+          labels: ['Unique combinations', 'Unique email adresses', 'Duplicates'],
           type: 'pie',
-          textinfo: "label+percent",
-          textposition: "outside",
+          textinfo: 'label+percent',
+          textposition: 'outside',
           automargin: true
         }
-      ];
+      ]
     },
     processedPieChartData() {
       return [
         {
-          values: [(this.data.data.total.current-this.data.data.total.new), this.data.data.total.new],
-          labels: ["Old entries", "New entries"],
+          values: [
+            this.data.data.total.current - this.data.data.total.new,
+            this.data.data.total.new
+          ],
+          labels: ['Old entries', 'New entries'],
           type: 'pie',
-          textinfo: "label+percent",
-          textposition: "outside",
+          textinfo: 'label+percent',
+          textposition: 'outside',
           automargin: true
         }
-      ];
-    },
+      ]
+    }
   },
   methods: {
     scrollToTop() {
@@ -124,21 +132,24 @@ export default {
   color: #5b6770;
   font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
 }
-h1{
+h1 {
   text-align: left;
   color: #00426be0;
   font-size: 35px;
 }
 @media (min-width: 1024px) {
   .about {
-    min-height: 100vh;
+    min-height: 75vh;
     display: flex;
     flex-direction: column;
   }
 }
-.header-row{
+.header-row {
+  position: relative;
+  right: -6.5em;
   display: flex;
-  align-items: center; /* Vertically center the button and text */
+  flex-direction: row;
+  align-items: center;
 }
 img {
   float: left;
@@ -150,7 +161,10 @@ p {
   text-align: left;
 }
 article {
-    padding-left: 12rem;
-    padding-right: 12rem;
-  }
+  padding-left: 12rem;
+  padding-right: 12rem;
+}
+.continue_btn {
+  background-color: rgb(245, 179, 51);
+}
 </style>
