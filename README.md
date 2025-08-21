@@ -1,6 +1,7 @@
 # Account Leak Report
 
 A simple website project to highlight account data leaks and their changes over time.
+This was created as part of a university project.
 
 ## Project Setup
 
